@@ -1,4 +1,4 @@
-name: Build and Push Typesense
+name: Build and Push
 
 on:
   push:
@@ -22,8 +22,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
-        run: docker build -t ghcr.io/${{ github.repository }}:latest .
+      - name: Build Image
+        run: docker build -t $REGISTRY/$IMAGE_NAME:latest .
 
-      - name: Push image
-        run: docker push ghcr.io/${{ github.repository }}:latest
+      - name: Push Image
+        run: docker push $REGISTRY/$IMAGE_NAME:latest
